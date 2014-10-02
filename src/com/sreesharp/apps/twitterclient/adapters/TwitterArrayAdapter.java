@@ -1,13 +1,9 @@
 package com.sreesharp.apps.twitterclient.adapters;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Locale;
 
 import android.content.Context;
 import android.text.Html;
-import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +13,6 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.sreesharp.apps.twitterclient.R;
-import com.sreesharp.apps.twitterclient.R.id;
-import com.sreesharp.apps.twitterclient.R.layout;
 import com.sreesharp.apps.twitterclient.models.Tweet;
 
 public class TwitterArrayAdapter extends ArrayAdapter<Tweet> {

@@ -79,9 +79,8 @@ public class PostActivity extends Activity {
 		}
 		else{
 			postTweet(tweetText);
-//			Intent i = new Intent();
-//			i.putExtra("tweet", tweetText);
-//			setResult(RESULT_OK,i);
+			Intent i = new Intent();
+			setResult(RESULT_OK,i);
 			finish();
 		}
 	}

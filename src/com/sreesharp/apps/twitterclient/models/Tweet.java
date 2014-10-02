@@ -15,7 +15,7 @@ import android.text.format.DateUtils;
 
 public class Tweet {
 	private String body;
-	private long uid;
+	private String id;
 	private String createAt;
 	private User user;
 	
@@ -25,7 +25,7 @@ public class Tweet {
 		try
 		{
 			tweet.body = json.getString("text");
-			tweet.uid = json.getLong("id");
+			tweet.id = json.getString("id_str");
 			tweet.createAt = Utility.getRelativeTimeAgo(json.getString("created_at"));
 			tweet.user = User.fromJSON (json.getJSONObject("user"));
 		}
@@ -60,8 +60,8 @@ public class Tweet {
 		return body;
 	}
 
-	public long getUid() {
-		return uid;
+	public String getId() {
+		return id;
 	}
 
 	public String getCreateAt() {

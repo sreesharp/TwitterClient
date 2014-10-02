@@ -1,7 +1,6 @@
 package com.sreesharp.apps.twitterclient.activities;
 
 import com.sreesharp.apps.twitterclient.R;
-import com.sreesharp.apps.twitterclient.R.layout;
 
 import android.app.Activity;
 import android.os.Bundle;

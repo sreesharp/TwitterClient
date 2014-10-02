@@ -16,8 +16,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.sreesharp.apps.twitterclient.EndlessScrollListener;
 import com.sreesharp.apps.twitterclient.R;
-import com.sreesharp.apps.twitterclient.R.id;
 import com.sreesharp.apps.twitterclient.TwitterClient;
 import com.sreesharp.apps.twitterclient.TwitterClientApp;
 import com.sreesharp.apps.twitterclient.adapters.TwitterArrayAdapter;
@@ -32,6 +32,7 @@ public class TimelineActivity extends Activity {
 	private ArrayAdapter<Tweet> aTweets;
 	private ListView lvTweets;
 	private User user; //Current user
+	private String lastTweetId=null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,21 +40,30 @@ public class TimelineActivity extends Activity {
 		setContentView(R.layout.activity_timeline);
 		
 		client = TwitterClientApp.getRestClient();
-		lvTweets = (ListView) findViewById(id.lvTweets);
+		lvTweets = (ListView) findViewById(R.id.lvTweets);
 		tweets = new ArrayList<Tweet>();
 		aTweets = new TwitterArrayAdapter(this,tweets);
 		lvTweets.setAdapter(aTweets);
 		
 		getUserDetails();
 		
-		populateTimelime();
+		populateTimeline();
+		
+		lvTweets.setOnScrollListener(new EndlessScrollListener() {
+			
+			@Override
+			public void onLoadMore(int page, int totalItemsCount) {
+				populateTimeline();
+			}
+		});
 	}
 
-	private void populateTimelime() {
+	private void populateTimeline() {
 		client.getHomeTimeline(new JsonHttpResponseHandler() {
 			@Override
 			public void onSuccess(JSONArray json) {
 				aTweets.addAll( Tweet.fromJSONArray(json));
+				lastTweetId = tweets.get(tweets.size()-1).getId();
 			}
 			
 			@Override
@@ -61,9 +71,11 @@ public class TimelineActivity extends Activity {
 				Log.d("debug",e.toString());
 				Log.d("debug",s.toString());
 			}
-		});
+		}, lastTweetId);
 		
 	}
+	
+
 	
 	public void getUserDetails(){
 		client.getUserDetails(new JsonHttpResponseHandler(){
@@ -98,16 +110,21 @@ public class TimelineActivity extends Activity {
 	public void onPost(MenuItem mi){
 		Intent i = new Intent(this, PostActivity.class);
 		i.putExtra("user", user);
-		startActivity(i);
+		startActivityForResult(i, 10);
 	}
+	
+	
 	
 	@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    	if(requestCode ==5){
+    	if(requestCode ==10){
     		if(resultCode == RESULT_OK){
-    			String composeTweet = (String) data.getStringExtra("tweet");
-    			Log.d("DEBUG","Tweet is "+composeTweet);
-    			Toast.makeText(this, composeTweet, Toast.LENGTH_SHORT).show();
+    			Toast.makeText(this, "Successfully tweeted", Toast.LENGTH_SHORT).show();
+    			
+    			tweets.clear();
+            	lastTweetId = null;
+            	lvTweets.invalidate();
+    			populateTimeline();
     		}
     	}
     }
