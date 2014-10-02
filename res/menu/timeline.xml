@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/logout_label"
+        android:onClick="onLogout"/>
+    
+    <item
+        android:id="@+id/action_compose"
+        android:showAsAction="always"
+        android:icon="@drawable/ic_action_post"
+        android:onClick="onPost"
+        android:title="@string/compose_label"/>
+
+</menu>
