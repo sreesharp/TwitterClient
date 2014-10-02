@@ -45,7 +45,7 @@
         </activity>
         <activity
             android:name="com.sreesharp.apps.twitterclient.activities.TimelineActivity"
-            android:label="@string/title_activity_timeline" >
+            android:label="" >
         </activity>
         <activity
             android:name="com.sreesharp.apps.twitterclient.activities.PostActivity"

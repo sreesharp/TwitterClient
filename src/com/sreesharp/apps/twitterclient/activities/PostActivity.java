@@ -5,6 +5,8 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -55,6 +57,10 @@ public class PostActivity extends Activity {
 		tvName.setText(user.getName());
 		tvScreenName.setText("@"+user.getScreenName());
 		tvCharCount.setText(totalCount+"");
+		
+		getActionBar().hide();
+		
+		setupPostTextListener();
 	}
 	
 	public void postTweet(String status){
@@ -83,5 +89,19 @@ public class PostActivity extends Activity {
 			setResult(RESULT_OK,i);
 			finish();
 		}
+	}
+	
+	public void setupPostTextListener(){
+		etCompose.addTextChangedListener(new TextWatcher(){
+	        public void afterTextChanged(Editable s) {
+	            String tweet = etCompose.getText().toString();
+	            
+	        }
+	        public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+	        public void onTextChanged(CharSequence s, int start, int before, int count){
+	        	String tweet = etCompose.getText().toString();
+	        	tvCharCount.setText(totalCount-tweet.length()+"");
+	        }
+	    }); 
 	}
 }

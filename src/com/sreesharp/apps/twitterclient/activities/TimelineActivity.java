@@ -5,15 +5,17 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.sreesharp.apps.twitterclient.EndlessScrollListener;
@@ -44,6 +46,9 @@ public class TimelineActivity extends Activity {
 		tweets = new ArrayList<Tweet>();
 		aTweets = new TwitterArrayAdapter(this,tweets);
 		lvTweets.setAdapter(aTweets);
+		
+		ActionBar bar = getActionBar();
+		bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#55ACEE")));
 		
 		getUserDetails();
 		
@@ -119,8 +124,6 @@ public class TimelineActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     	if(requestCode ==10){
     		if(resultCode == RESULT_OK){
-    			Toast.makeText(this, "Successfully tweeted", Toast.LENGTH_SHORT).show();
-    			
     			tweets.clear();
             	lastTweetId = null;
             	lvTweets.invalidate();

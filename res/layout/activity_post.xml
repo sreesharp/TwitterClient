@@ -17,9 +17,10 @@
         android:layout_height="40dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-
+        android:background="#55ACEE"
         android:onClick="onPost"
-        android:text="@string/tweet_label" />
+        android:text="@string/tweet_label"
+        android:textColor="#FFFFFF" />
 
     <TextView
         android:id="@+id/tvComposeUserName"
@@ -49,6 +50,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/ivComposeProfileImage"
+        android:paddingTop="20dp"
         android:ems="10"
         android:hint="@string/whats_happening_label" />
 
@@ -64,9 +66,9 @@
         android:id="@+id/tvCharCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/btTweet"
-        android:layout_below="@+id/btTweet"
+       android:layout_toLeftOf="@+id/btTweet"
         android:text="@string/sample_label"
+        android:padding="10dp"
         android:textColor="#A1A1A1"
         android:textSize="15sp" />
 

@@ -1,6 +1,9 @@
 package com.sreesharp.apps.twitterclient.activities;
 
+import android.app.ActionBar;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -15,6 +18,9 @@ public class LoginActivity extends OAuthLoginActivity<TwitterClient> {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+		
+		ActionBar bar = getActionBar();
+		bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#55ACEE")));
 	}
 
 	// Inflate the menu; this adds items to the action bar if it is present.
