@@ -1,4 +1,4 @@
-package com.sreesharp.apps.twitterclient;
+package com.sreesharp.apps.twitterclient.listeners;
 
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;

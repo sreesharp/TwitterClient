@@ -44,7 +44,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.sreesharp.apps.twitterclient.activities.TimelineActivity"
+            android:name="com.sreesharp.apps.twitterclient.fragments.TweetsFragment"
             android:label="" >
         </activity>
         <activity
@@ -54,6 +54,14 @@
         <activity
             android:name="com.sreesharp.apps.twitterclient.activities.DetailsActivity"
             android:label="@string/title_activity_details" >
+        </activity>
+        <activity
+            android:name="com.sreesharp.apps.twitterclient.activities.MainActivity"
+            android:label="" >
+        </activity>
+        <activity
+            android:name="com.sreesharp.apps.twitterclient.activities.ProfileActivity"
+            android:label="@string/title_activity_profile" >
         </activity>
     </application>
 

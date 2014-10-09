@@ -18,5 +18,8 @@
     <string name="tab1_label">Home</string>
     <string name="title_activity_view_profile">ViewProfileActivity</string>
     <string name="sample_label">Test String</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="profile_label">Profile</string>
+    <string name="title_activity_profile">Profile</string>
 
 </resources>

@@ -19,6 +19,15 @@ public class Utility {
      */
     public static final long YEAR_IN_MILLIS = WEEK_IN_MILLIS * 52;
 
+    public static String kFormatter(long num) {
+    	if(num < 999)
+    		return String.format("%d", num); 
+    	else if (num < 999999)
+    		return String.format("%.1f", num/1000.0) + 'K';
+    	else
+    		return String.format("%.1f", num/1000000.0) + 'M';
+    }
+
     
 	public static String getRelativeTimeAgo(String rawJsonDate) {
 		String twitterFormat = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";

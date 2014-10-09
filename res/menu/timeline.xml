@@ -11,7 +11,14 @@
         android:id="@+id/action_compose"
         android:showAsAction="always"
         android:icon="@drawable/ic_action_post"
-        android:onClick="onPost"
+        android:onClick="onPostClick"
         android:title="@string/compose_label"/>
+    
+     <item
+        android:id="@+id/action_profile"
+        android:showAsAction="always"
+        android:icon="@drawable/ic_profile"
+        android:onClick="onProfileClick"
+        android:title="@string/profile_label"/>
 
 </menu>

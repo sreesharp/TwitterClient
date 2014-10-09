@@ -8,6 +8,7 @@ import android.content.Context;
 
 import com.codepath.oauth.OAuthBaseClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 /*
@@ -59,6 +60,39 @@ public class TwitterClient extends OAuthBaseClient {
 		client.post(apiUrl, params, handler);
 	}
 
+	
+	public void getMentionsTimeline(AsyncHttpResponseHandler handler, String lastTweetId){
+		String timelineUrl = getApiUrl("statuses/mentions_timeline.json");
+		RequestParams params = new RequestParams();
+		if(lastTweetId != null){
+			params.put("max_id",lastTweetId);
+		}
+		params.put("since_id","1");
+		client.get(timelineUrl, params, handler);
+	}
+
+
+	public void getUserTimeline(JsonHttpResponseHandler handler, String userId, String lastTweetId) {
+		String timelineUrl = getApiUrl("statuses/user_timeline.json");
+		RequestParams params = new RequestParams();
+		if(lastTweetId != null){
+			params.put("max_id",lastTweetId);
+		}
+		params.put("since_id","1");
+		params.put("screen_name", userId);
+		client.get(timelineUrl, params, handler);
+		
+	}
+	
+	public void getUserDetails(AsyncHttpResponseHandler handler, String screenName) {
+		String userShowUrl = getApiUrl("users/show.json");
+		RequestParams params = new RequestParams();
+		params.put("screen_name",screenName);
+		client.get(userShowUrl, params, handler);
+		
+	}
+	
+	
 	// CHANGE THIS
 	// DEFINE METHODS for different API endpoints here
 	/*

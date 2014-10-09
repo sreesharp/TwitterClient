@@ -6,16 +6,20 @@ import android.content.Context;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.sreesharp.apps.twitterclient.R;
+import com.sreesharp.apps.twitterclient.listeners.OnProfileSelectedListener;
 import com.sreesharp.apps.twitterclient.models.Tweet;
 
 public class TwitterArrayAdapter extends ArrayAdapter<Tweet> {
+	
 
 	public TwitterArrayAdapter(Context context, 
 			List<Tweet> tweets) {
@@ -46,6 +50,14 @@ public class TwitterArrayAdapter extends ArrayAdapter<Tweet> {
 		ImageLoader imageLoader = ImageLoader.getInstance();
 		
 		imageLoader.displayImage(tweet.getUser().getProfileImageUrl(),ivProfile);
+		ivProfile.setTag(tweet.getUser().getScreenName());
+		ivProfile.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				OnProfileSelectedListener profileListener  = (OnProfileSelectedListener)v.getContext(); 
+				profileListener.OnProfileSelected(v.getTag().toString());
+			}
+		});
 		
 		tvUserName.setText(tweet.getUser().getName());
 		tvScreenName.setText("@"+tweet.getUser().getScreenName());
